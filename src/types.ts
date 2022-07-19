@@ -29,3 +29,11 @@ interface Row {
     lastPayments: number;
     posts: number;
 }
+
+type Search = string | undefined;
+type Sort = 'asc' | 'desc' | null;
+
+interface Filter {
+    noPosts: boolean;
+    more100Posts: boolean;
+}
