@@ -20,7 +20,8 @@ interface TableProps {
 }
 
 export function Table(props: TableProps) {
-  const { rows } = props;
+  const { rows = [] } = props;
+  
   return (
     <div className={styles.container}>
       <div className={styles.tableBackground}>
