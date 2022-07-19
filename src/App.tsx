@@ -10,6 +10,7 @@ import type { Row } from './components';
 import type { Image, User, Account } from '../types';
 
 import rows from './mocks/rows.json';
+import { dataConverter } from './utils/dataConverter';
 
 // mockedData has to be replaced with parsed Promises’ data
 const mockedData: Row[] = rows.data;
@@ -21,9 +22,9 @@ function App() {
     // fetching data from API
     Promise.all([getImages(), getUsers(), getAccounts()]).then(
       ([images, users, accounts]: [Image[], User[], Account[]]) =>
-        console.log(images, users, accounts)
+        setData(dataConverter(users, accounts, images))
     );
-  }, [])
+  }, [dataConverter]);
 
   return (
     <StyledEngineProvider injectFirst>
@@ -35,7 +36,7 @@ function App() {
           </div>
           <Search />
         </div>
-        <Table rows={data || mockedData} />
+        <Table rows={data} />
       </div>
     </StyledEngineProvider>
   );
